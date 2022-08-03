@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 class ConsoleUtilities {
+
     private static final String os = System.getProperty("os.name").toLowerCase();
 
     public static void clearConsole() {

@@ -1,36 +1,29 @@
 package com.blackforestcastle;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import com.blackforestcastle.Commands;
 
 public class Room {
 
-    String name;
-    String[] items;
-    List<Item> itemObjects = new ArrayList<>();
-    List<NPC> npcObjects = new ArrayList<>();
-    String north, south, east, west;
-    String desc;
-    String[] NPC;
-
-    public Room(String name, String[] items, String north, String south, String east, String west, String desc, String[] NPC) {
-        this.name = name;
-        this.items = items;
-        this.north = north;
-        this.south = south;
-        this.east = east;
-        this.west = west;
-        this.desc = desc;
-        this.NPC = NPC;
-    }
+    private String name,desc;
+    private String east,west,south,north;
+    private List<Item> itemObjects;
+    private List<NPC> npcObjects;
+    private String[] NPC;
+    private String[] items;
 
     public Room() {
+        setItemObjects(new ArrayList<Item>());
+        setNpcObjects(new ArrayList<NPC>());
     }
+
 
     public void makeNPCInstances() {
         JSONReader jsonReader = new JSONReader();
         NPC[] npcJSON = jsonReader.getNPC();
+        Arrays.asList(npcJSON);
         for (String npc : NPC) {
             for (NPC npc0 : npcJSON) {
                 if (npc.equals(npc0.getName())) {
@@ -52,11 +45,17 @@ public class Room {
             }
         }
     }
+    public String roomInfo(Character player) {
+        String npcStringDesc = "";
+        if (!npcObjects.isEmpty()){
+            for (NPC npc : npcObjects){
+                npcStringDesc = "\n" + npc.getDesc();
+            }
+        }
+        return "Current Location: " + getName() + "\n" + "Player Health: " + player.getHP() + "\n" + "Description: " + getDesc() + "\n" + "Items: " + getItems() + "\n" + getValidDirections()
+                + "\n" + "NPCs: " + getNPCs()  + npcStringDesc;
 
-    public String getName() {
-        return name;
     }
-
     public Item checkRoomForItem(String item) {
         for (Item itemObject : itemObjects) {
             if (item.equals(itemObject.getName())) {
@@ -65,6 +64,7 @@ public class Room {
         }
         return null;
     }
+
 
     public String getNPCs() {
         String npcValue = "";
@@ -97,9 +97,7 @@ public class Room {
         }
     }
 
-    public String getDesc() {
-        return desc;
-    }
+
 
     public String getValidDirections() {
         String direction1 = "";
@@ -124,19 +122,47 @@ public class Room {
 
     }
 
+    public void setItems(String[] items) {
+        this.items = items;
+    }
+
+    public List<Item> getItemObjects() {
+        return itemObjects;
+    }
+
+    public void setItemObjects(List<Item> itemObjects) {
+        this.itemObjects = itemObjects;
+    }
+
     public List<com.blackforestcastle.NPC> getNpcObjects() {
         return npcObjects;
     }
 
-    public String roomInfo(Character player) {
-        String npcStringDesc = "";
-        if (!npcObjects.isEmpty()){
-            for (NPC npc : npcObjects){
-                npcStringDesc = "\n" + npc.getDesc();
-            }
-        }
-        return "Current Location: " + getName() + "\n" + "Player Health: " + player.getHP() + "\n" + "Description: " + getDesc() + "\n" + "Items: " + getItems() + "\n" + getValidDirections()
-                + "\n" + "NPCs: " + getNPCs()  + npcStringDesc;
+    public void setNpcObjects(List<com.blackforestcastle.NPC> npcObjects) {
+        this.npcObjects = npcObjects;
+    }
 
+    public String[] getNPC() {
+        return NPC;
+    }
+
+    public void setNPC(String[] NPC) {
+        this.NPC = NPC;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 }
