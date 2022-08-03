@@ -5,22 +5,25 @@ import java.util.List;
 
 class Player extends Character {
 
-    Room currentRoom;
+    private Room currentRoom;
 
     public Player() {
 
     }
+    public Player(Room theRoom){
+        setCurrentRoom(theRoom);
+    }
 
-    public Player(Room currentRoom, int HP) {
-        this.currentRoom = currentRoom;
-        super.setHP(HP);
+    public Player(Room theCurrentRoom, int theHp) {
+        this(theCurrentRoom);
+        super.setHP(theHp);
 
     }
 
     @Override
     public void attack(Character npc) {
         getPlayerAttackPower();
-        int damageDone = getAttackPower() + randomNumber(10);
+        int damageDone = getAttackPower() + randomNumber(10,0);
         npc.setHP(npc.getHP() - damageDone);
         System.out.println("You did " + damageDone + " damage. The enemies health now is " + npc.getHP());
     }
@@ -28,9 +31,9 @@ class Player extends Character {
     // helper for attack method
     public void getPlayerAttackPower() {
         // knife, sword, bow, arrow
-        for (Item item : inventory) {
+        for (Item item : super.getInventory()) {
             if (item.getName().equals("bow")) {
-                for (Item item0 : inventory) {
+                for (Item item0 : super.getInventory()) {
                     if (item0.getName().equals("arrows")) {
                         setAttackPower(15);
                     }
@@ -47,14 +50,14 @@ class Player extends Character {
 
     public void showInventory() {
         System.out.print("Inventory: ");
-        for (Item item : inventory) {
+        for (Item item : super.getInventory()) {
             System.out.print(item.getName() + ", ");
         }
         System.out.println();
     }
 
     public Item checkInventoryForItem(String item) {
-        for (Item itemObject : inventory) {
+        for (Item itemObject : super.getInventory()) {
             if (item.equals(itemObject.getName())) {
                 return itemObject;
             }
@@ -63,7 +66,7 @@ class Player extends Character {
     }
 
     public List<Item> getInventory() {
-        return inventory;
+        return super.getInventory();
     }
 
     public Room getCurrentRoom() {
