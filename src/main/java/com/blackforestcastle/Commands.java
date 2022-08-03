@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 public class Commands {
     Controller controller = Controller.getInstance();
-    NPC npc = new NPC();
+    //NPC npc = new NPC();
     JSONReader jsonReader = new JSONReader();
     Room[] rooms = jsonReader.getRooms();
     Player player = new Player(rooms[0], 100);
@@ -72,7 +72,7 @@ public class Commands {
             case "attack":
             case "fight":
             case "combat":
-                attack();
+                battle();
                 break;
             case "look":
             case "show":
@@ -125,7 +125,7 @@ public class Commands {
                     System.out.println("A page suggest a key is located somewhere in the bedroom.");
                     break;
                 case "lever":
-                    if (player.currentRoom.equals(rooms[0]) && itemObject.getName().equals("lever")) {
+                    if (player.getCurrentRoom().equals(rooms[0]) && itemObject.getName().equals("lever")) {
                         System.out.println("You insert the lever into the pulley and begin to crank clockwise, the portcullis raises opening the way you got in.\n" + "You hastily escape through the entrance to freedom.");
                         System.out.println("Congratulations you win the game!");
                         controller.quitGame();
@@ -134,15 +134,15 @@ public class Commands {
                     break;
                 case "key":
 
-                    if (player.currentRoom.equals(rooms[5])) {
+                    if (player.getCurrentRoom().equals(rooms[5])) {
                         System.out.println("After using the key, you see a lever in the chest.");
-                        rooms[5].itemObjects.add(jsonReader.getItems()[7]);
+                        rooms[5].getItemObjects().add(jsonReader.getItems()[7]);
 
                     }
                     break;
             }
 
-            player.inventory.remove(itemObject);
+            player.getInventory().remove(itemObject);
             if (!wonGame) {
                 System.out.println("Used: " + itemObject.getName());
             }
@@ -156,21 +156,30 @@ public class Commands {
             System.out.println("Invalid direction, enter a valid direction.");
         }
     }
+    //Helper functions
+    void goToRoom(String direction) {
+        for (Room room : rooms) {
+            if (room.getName().equals(player.getCurrentRoom().getDirection(direction))) {
+                player.setCurrentRoom(room);
+                break;
+            }
+        }
+    }
 
     void get(String item) {
-        Item itemObject = player.currentRoom.checkRoomForItem(item);
+        Item itemObject = player.getCurrentRoom().checkRoomForItem(item);
         if (itemObject != null && itemObject.getName().equals(item)) {
-            player.inventory.add(itemObject);
+            player.getInventory().add(itemObject);
             System.out.println("Picked up: " + itemObject.getName());
-            player.currentRoom.itemObjects.remove(itemObject);
+            player.getCurrentRoom().getItemObjects().remove(itemObject);
         }
     }
 
     void drop(String item) {
         Item itemObject = player.checkInventoryForItem(item);
         if (itemObject != null && itemObject.getName().equals(item)) {
-            player.currentRoom.itemObjects.add(itemObject);
-            player.inventory.remove(itemObject);
+            player.getCurrentRoom().getItemObjects().add(itemObject);
+            player.getInventory().remove(itemObject);
             System.out.println("Dropped: " + itemObject.getName());
         }
     }
@@ -188,30 +197,36 @@ public class Commands {
         player.showInventory();
     }
 
-    void attack() {
-        if (!player.currentRoom.getNpcObjects().isEmpty()) {
-            battle();
-        }
-    }
+
 
     void battle() {
-        Character npc = player.currentRoom.getNpcObjects().get(0);
-        boolean battleOngoing = true;
-        while (battleOngoing) {
-            player.attack(npc);
-            if (npc.getHP() <= 0) {
-                System.out.println("You won the battle!!");
-                player.currentRoom.getNpcObjects().remove(npc);
-                break;
-            }
-            npc.attack(player);
-            if (player.getHP() <= 0) {
-                System.out.println("*** You're dead.. *** :(");
-                System.out.println("\n");
-                controller.newGame();
+        if (!player.getCurrentRoom().getNpcObjects().isEmpty()) {
+            NPC npc = player.getCurrentRoom().getNpcObjects().get(0);
+            boolean battleOngoing = true;
+            while (battleOngoing) {
+                player.attack(npc);
+                if (npc.getHP() <= 0) {
+                    System.out.println("You won the battle!!");
+                    //add random item to enemy npc
+                    npc.addRandomItemToInventory();
+                        for (Item npcItem :
+                                npc.getInventory()) {
+                            System.out.println(npc.getName()+" dropped "+npcItem.getName());
+                            player.getCurrentRoom().getItemObjects().add(npcItem);
+                        }
+
+                    player.getCurrentRoom().getNpcObjects().remove(npc);
+                    break;
+                }
+                npc.attack(player);
+                if (player.getHP() <= 0) {
+                    System.out.println("*** You're dead.. *** :(");
+                    System.out.println("\n");
+                    controller.newGame();
+
+                }
 
             }
-
         }
     }
 
@@ -221,7 +236,7 @@ public class Commands {
 
     void teleport(String room) {
         boolean hasRing = false;
-        for (Item itemObj : player.inventory) {
+        for (Item itemObj : player.getInventory()) {
             if (itemObj.getName().equals("ring")) {
                 hasRing = true;
                 break;
@@ -240,13 +255,5 @@ public class Commands {
         controller.commandsInstructions();
     }
 
-    //Helper functions
-    void goToRoom(String direction) {
-        for (Room room : rooms) {
-            if (room.getName().equals(player.getCurrentRoom().getDirection(direction))) {
-                player.setCurrentRoom(room);
-                break;
-            }
-        }
-    }
+
 }
