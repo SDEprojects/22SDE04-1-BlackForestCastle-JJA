@@ -200,8 +200,9 @@ public class Commands {
         while (battleOngoing) {
             player.attack(npc);
             if (npc.getHP() <= 0) {
-                System.out.println("You won the battle!!");
+                System.out.println("You won the battle!!! \n100 experience points gained");
                 player.currentRoom.getNpcObjects().remove(npc);
+                player.addExperiencePoints(100);
                 break;
             }
             npc.attack(player);
@@ -209,7 +210,6 @@ public class Commands {
                 System.out.println("*** You're dead.. *** :(");
                 System.out.println("\n");
                 controller.newGame();
-
             }
 
         }

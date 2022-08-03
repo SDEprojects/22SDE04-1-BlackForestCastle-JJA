@@ -7,6 +7,10 @@ class Player extends Character {
 
     Room currentRoom;
 
+
+
+    int experiencePoints = 0;
+
     public Player() {
 
     }
@@ -14,7 +18,6 @@ class Player extends Character {
     public Player(Room currentRoom, int HP) {
         this.currentRoom = currentRoom;
         super.setHP(HP);
-
     }
 
     @Override
@@ -65,7 +68,15 @@ class Player extends Character {
     public List<Item> getInventory() {
         return inventory;
     }
+    public int getExperiencePoints()
+    {
+        return experiencePoints;
+    }
 
+    public void addExperiencePoints(int experiencePoints)
+    {
+        this.experiencePoints = experiencePoints;
+    }
     public Room getCurrentRoom() {
         return currentRoom;
     }
