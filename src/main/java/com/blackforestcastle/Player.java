@@ -6,9 +6,6 @@ import java.util.List;
 class Player extends Character {
 
     Room currentRoom;
-
-
-
     int experiencePoints = 0;
 
     public Player() {
@@ -75,7 +72,7 @@ class Player extends Character {
 
     public void addExperiencePoints(int experiencePoints)
     {
-        this.experiencePoints = experiencePoints;
+        this.experiencePoints += experiencePoints;
     }
     public Room getCurrentRoom() {
         return currentRoom;
