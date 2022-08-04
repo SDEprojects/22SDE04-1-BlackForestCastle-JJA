@@ -2,6 +2,7 @@ package com.blackforestcastle;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 class Player extends Character {
 
@@ -94,5 +95,15 @@ class Player extends Character {
         if(this.name == null)
             return "Anonymous";
         else return this.name;
+    }
+
+    public boolean keepsFighting()
+    {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter \"Q\" to exit the battle\nTo continue, enter any other key.");
+        String input = scanner.nextLine();
+        if(input.trim().equalsIgnoreCase("q"))
+            return false;
+        return true;
     }
 }
