@@ -109,6 +109,9 @@ public class Commands
                 break;
             case "use":
                 use(noun);
+                break;
+            case "scores":
+                GameInfo.viewScores();
         }
     }
 
