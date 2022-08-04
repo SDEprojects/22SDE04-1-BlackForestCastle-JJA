@@ -55,8 +55,9 @@ public class Controller {
         System.out.println(basicInfo);
     }
 
-    public void quitGame() {
+    public void quitGame(Player player) {
         System.out.println("Thanks for playing!");
+        EndGame.saveScore(player);
         gameRunning = false;
     }
 
