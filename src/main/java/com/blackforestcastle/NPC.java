@@ -40,8 +40,9 @@ class NPC extends Character {
     }
 
     public void printRandomTaunt(){
-        Object taunt = new Random().nextInt(getTauntMap().values().toArray().length);
-        System.out.println(taunt);
+        Random random = new Random();
+        Object[] values = getTauntMap().values().toArray();
+        System.out.println(values[random.nextInt(values.length)]);
     }
     public static boolean isTaunting()
     {
