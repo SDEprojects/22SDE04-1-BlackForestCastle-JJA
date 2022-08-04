@@ -98,7 +98,7 @@ public class Commands
             case "quit":
             case "exit":
             case "terminate":
-                controller.quitGame();
+                controller.quitGame(player);
                 break;
             case "map":
                 map();
@@ -140,7 +140,7 @@ public class Commands
                     {
                         System.out.println("You insert the lever into the pulley and begin to crank clockwise, the portcullis raises opening the way you got in.\n" + "You hastily escape through the entrance to freedom.");
                         System.out.println("Congratulations you win the game!");
-                        controller.quitGame();
+                        controller.quitGame(player);
                         wonGame = true;
                     }
                     break;
@@ -263,10 +263,9 @@ public class Commands
             npc.attack(player);
             if (player.getHP() <= 0)
             {
-                System.out.println("*** You're dead.. *** :(");
-                System.out.println("\n");
+                System.out.println("*** You're dead.. *** :(\n");
+                EndGame.saveScore(player);
                 controller.newGame();
-
             }
 
 
