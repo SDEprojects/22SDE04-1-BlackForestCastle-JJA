@@ -6,6 +6,7 @@ import java.util.List;
 class Player extends Character {
 
     private Room currentRoom;
+    private int experiencePoints;
 
     public Player() {
 
@@ -71,6 +72,16 @@ class Player extends Character {
 
     public Room getCurrentRoom() {
         return currentRoom;
+    }
+
+    public int getExperiencePoints()
+    {
+        return experiencePoints;
+    }
+
+    public void addExperiencePoints(int experiencePoints)
+    {
+        this.experiencePoints = experiencePoints;
     }
 
     public void setCurrentRoom(Room currentRoom) {

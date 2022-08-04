@@ -1,15 +1,21 @@
 package com.blackforestcastle;
 
+import java.util.HashMap;
+import java.util.Random;
+
 class NPC extends Character {
 
     private String name;
     private String desc;
     private boolean isFriendly;
+    private HashMap<Integer, String> taunt = new HashMap<>();
 
     //keep empty json reader will overwrite
     public NPC(){
+        initializeTauntMap();
     }
     public NPC(String theName){
+        this();
         setName(theName);
     }
     public NPC(String theName, String theDesc){
@@ -33,6 +39,16 @@ class NPC extends Character {
         super.getInventory().add(allItems[super.randomNumber(allItems.length,0)]);
     }
 
+    public void printRandomTaunt(){
+        Random random = new Random();
+        Object[] values = getTauntMap().values().toArray();
+        System.out.println(values[random.nextInt(values.length)]);
+    }
+    public static boolean isTaunting()
+    {
+        return new Random().nextBoolean();
+    }
+
     public String getName() {
         return name;
     }
@@ -45,7 +61,25 @@ class NPC extends Character {
         return desc;
     }
 
+    private void initializeTauntMap(){
+        this.taunt.put(1, "Go home and be a family man!");
+        this.taunt.put(2, "My attacks will tear you apart.");
+        this.taunt.put(3, "Run, coward!");
+        this.taunt.put(4, "Look at you, hacker. A pathetic creature of meat and bone, panting and sweating as you run through my corridors. How can you challenge a perfect, immortal machine?");
+        this.taunt.put(5, "You weak, pathetic fool.”");
+        this.taunt.put(6, "You spoony bard!");
+        this.taunt.put(7, "I salute my fallen enemy!");
+        this.taunt.put(8, "*laugh*");
+    }
+
     public void setDesc(String desc) {
         this.desc = desc;
     }
+    private HashMap<Integer, String> getTauntMap(){
+        return this.taunt;
+    }
+
+
+
+
 }
