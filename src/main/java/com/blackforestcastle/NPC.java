@@ -5,22 +5,47 @@ import java.util.Random;
 
 class NPC extends Character {
 
-    String name;
-    String desc;
-    boolean isFriendly;
+    private String name;
+    private String desc;
+    private boolean isFriendly;
     private HashMap<Integer, String> taunt = new HashMap<>();
 
-    public NPC()
-    {
+    //keep empty json reader will overwrite
+    public NPC(){
         initializeTauntMap();
+    }
+    public NPC(String theName){
+        this();
+        setName(theName);
+    }
+    public NPC(String theName, String theDesc){
+        this(theName);
+        setDesc(theDesc);
     }
 
     @Override
     public void attack(Character player) {
-        int damageDone = getAttackPower() + randomNumber(10);
+        int damageDone = getAttackPower() + randomNumber(10,1);
         player.setHP(player.getHP()-damageDone);
         System.out.println("The enemy did " + damageDone + " damage. Your health is now " + player.getHP());
 
+    }
+    //adds a random item to the NPC inventory
+    public void addRandomItemToInventory(){
+        JSONReader jsonReader = new JSONReader();
+        //retrieve all items possible from json file
+        Item[] allItems = jsonReader.getItems();
+        //add one random item pulled from the allItems list generated based on the size of the list
+        super.getInventory().add(allItems[super.randomNumber(allItems.length,0)]);
+    }
+
+    public void printRandomTaunt(){
+        Object taunt = new Random().nextInt(getTauntMap().values().toArray().length);
+        System.out.println(taunt);
+    }
+    public static boolean isTaunting()
+    {
+        return new Random().nextBoolean();
     }
 
     public String getName() {
@@ -31,7 +56,7 @@ class NPC extends Character {
         this.name = name;
     }
 
-    public String getDesc(){
+    public String getDesc() {
         return desc;
     }
 
@@ -45,17 +70,14 @@ class NPC extends Character {
         this.taunt.put(7, "I salute my fallen enemy!");
         this.taunt.put(8, "*laugh*");
     }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
     private HashMap<Integer, String> getTauntMap(){
         return this.taunt;
     }
-    public void printRandomTaunt(){
-        Object taunt = new Random().nextInt(getTauntMap().values().toArray().length);
-        System.out.println(taunt);
-    }
-    public static boolean isTaunting()
-    {
-        return new Random().nextBoolean();
-    }
+
 
 
 
