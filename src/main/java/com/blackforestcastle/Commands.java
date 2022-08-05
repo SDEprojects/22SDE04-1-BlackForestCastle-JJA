@@ -248,7 +248,8 @@ public class Commands
             player.attack(npc);
             if (npc.getHP() <= 0)
             {
-                System.out.println("You won the battle!!");
+                System.out.println("You won the battle and gained 100 experience points!!");
+                player.addExperiencePoints(100);
                 //add random item to enemy npc
                 npc.addRandomItemToInventory();
                 for (Item npcItem :
@@ -271,7 +272,10 @@ public class Commands
                 controller.newGame();
             }
 
-
+            if (!player.keepsFighting()) {
+                System.out.println("You lost the battle but did not lose the war");
+                break;
+            }
         }
     }
 
