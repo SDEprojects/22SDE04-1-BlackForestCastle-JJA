@@ -12,7 +12,7 @@ class EndGame {
         {
             BufferedWriter SaveScore = new BufferedWriter(new FileWriter("src/main/resources/scores.txt", true));
             LocalDateTime now = LocalDateTime.now();
-            String score = now + " PLAYER-NAME:" + player.getName() + " SCORE:" + player.getExperiencePoints() + "\n";
+            String score = "PLAYER-NAME:" + player.getName() + " SCORE:" + player.getExperiencePoints() + "   "+ now +"\n";
             SaveScore.append(score);
             SaveScore.close();
         } catch (IOException e)
