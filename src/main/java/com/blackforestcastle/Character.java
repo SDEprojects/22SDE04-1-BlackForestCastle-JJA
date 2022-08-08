@@ -63,4 +63,16 @@ public abstract class Character {
     public void setInventory(List<Item> inventory) {
         this.inventory = inventory;
     }
+
+    public void addAttackPower(int attackBoost){
+        this.attackPower += attackBoost;
+    }
+
+    public void addDefensePoints(int defenseBoost){
+        this.defendPower += defenseBoost;
+    }
+
+    public void addHP(int hpBoost){
+        this.HP += hpBoost;
+    }
 }
