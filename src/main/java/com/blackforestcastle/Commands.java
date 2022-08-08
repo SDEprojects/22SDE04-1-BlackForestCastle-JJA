@@ -159,8 +159,10 @@ public class Commands
             if (!player.getCurrentRoom().equals(rooms[0]) && itemObject.getName().equals("lever"))
                 //do not remove the lever
                 //this allows the player to win the game
-                ;
+                System.out.println("You cannot use the lever in this room.");
             else player.getInventory().remove(itemObject);
+
+
             if (!wonGame)
             {
                 System.out.println("Used: " + itemObject.getName());
@@ -200,6 +202,24 @@ public class Commands
         {
             player.getInventory().add(itemObject);
             System.out.println("Picked up: " + itemObject.getName());
+
+            int attackBoost = itemObject.getAttackPointsForItem();
+            int defenseBoost = itemObject.getDefensePointsForItem();
+            int hpBoost = itemObject.getHpPointsForItem();
+
+            if(attackBoost != 0){
+                player.addAttackPower(attackBoost);
+                System.out.println("Gained: " + attackBoost + " attack points.");
+            }
+            if (defenseBoost != 0){
+                player.addDefensePoints(defenseBoost);
+                System.out.println("Gained: " + defenseBoost + " defense points.");
+            }
+            if (hpBoost !=0 ){
+                player.addHP(hpBoost);
+                System.out.println("Gained: " + attackBoost + " health points.");
+            }
+
             player.getCurrentRoom().getItemObjects().remove(itemObject);
         }
     }
