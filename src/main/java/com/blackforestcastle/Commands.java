@@ -4,7 +4,6 @@ import org.apache.commons.io.IOUtils;
 
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-import java.util.Locale;
 import java.util.Scanner;
 
 import static com.blackforestcastle.NPC.isTaunting;
@@ -153,12 +152,15 @@ public class Commands
                     {
                         System.out.println("After using the key, you see a lever in the chest.");
                         rooms[5].getItemObjects().add(jsonReader.getItems()[7]);
-
                     }
                     break;
             }
 
-            player.getInventory().remove(itemObject);
+            if (!player.getCurrentRoom().equals(rooms[0]) && itemObject.getName().equals("lever"))
+                //do not remove the lever
+                //this allows the player to win the game
+                ;
+            else player.getInventory().remove(itemObject);
             if (!wonGame)
             {
                 System.out.println("Used: " + itemObject.getName());
@@ -305,11 +307,8 @@ public class Commands
             }
         }
     }
-
     void help()
     {
         controller.commandsInstructions();
     }
-
-
 }

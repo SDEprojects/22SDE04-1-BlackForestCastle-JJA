@@ -6,8 +6,10 @@ import com.blackforestcastle.*;
 
 import java.io.IOException;
 
-class Main {
-    public static void main(String[] args) {
+class Main
+{
+    public static void main(String[] args)
+    {
         Controller controller = Controller.getInstance();
         controller.newGame();
     }
