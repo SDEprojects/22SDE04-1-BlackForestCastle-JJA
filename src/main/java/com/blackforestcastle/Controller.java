@@ -2,6 +2,7 @@ package com.blackforestcastle;
 
 import org.apache.commons.io.IOUtils;
 
+import javax.swing.*;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;

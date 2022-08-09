@@ -1,5 +1,7 @@
 package com.blackforestcastle.gui;
 
+import com.blackforestcastle.Controller;
+
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;

@@ -1,5 +1,8 @@
 package com.blackforestcastle.gui;
 
+import com.blackforestcastle.Controller;
+import com.blackforestcastle.Commands;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -10,6 +13,7 @@ class UI extends JFrame {
     private JButton button1;
     private JButton button2;
     private JButton button3;
+    Controller controller = Controller.getInstance();
 
     public UI() {
         startUI();
@@ -44,7 +48,7 @@ class UI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent arg0) {
                 textBox.add(button1);
-                textBox.addTextToTextArea("Test1");
+                textBox.addTextToTextArea("resources/title.txt");
             }
         });
 
