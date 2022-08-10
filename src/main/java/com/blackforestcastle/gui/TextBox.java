@@ -1,7 +1,5 @@
 package com.blackforestcastle.gui;
 
-import com.blackforestcastle.Controller;
-
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -18,11 +16,14 @@ public class TextBox extends JPanel {
         add(new JScrollPane(textField), BorderLayout.CENTER);
     }
 
-    public void addTextToTextArea(String text) {
+    public void append(String text) {
         textField.append(text);
     }
-}
 
+    public String getText() {
+        return textField.getText();
+    }
+}
 /*
 Created a text-field to place the text for the game in.
  */

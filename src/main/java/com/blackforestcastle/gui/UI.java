@@ -1,19 +1,21 @@
 package com.blackforestcastle.gui;
 
-import com.blackforestcastle.Controller;
-import com.blackforestcastle.Commands;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.*;
+import java.nio.file.Paths;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.nio.file.Paths;
 
 class UI extends JFrame {
     private TextBox textBox;
     private JButton button1;
     private JButton button2;
     private JButton button3;
-    Controller controller = Controller.getInstance();
+    Process p = null;
 
     public UI() {
         startUI();
@@ -48,7 +50,20 @@ class UI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent arg0) {
                 textBox.add(button1);
-                textBox.addTextToTextArea("resources/title.txt");
+                try {
+                    p = Runtime.getRuntime().exec(
+                            "java -jar team_2_black_forest_castle.jar"
+                    );
+                    try(BufferedReader input = new BufferedReader(new InputStreamReader(p.getInputStream()))) {
+                        String line;
+
+                        while ((line = input.readLine()) != null) {
+                            textBox.append(line + System.lineSeparator());
+                        }
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -56,7 +71,19 @@ class UI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent arg0) {
                 textBox.add(button2);
-                textBox.addTextToTextArea("Test2");
+
+                TextBox textBox2 = new TextBox();
+
+                OutputStream stdin = p.getOutputStream();
+
+                BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(stdin));
+
+                try {
+                    writer.write(textBox2.getText());
+                    writer.flush();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -64,7 +91,7 @@ class UI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent arg0) {
                 textBox.add(button3);
-                textBox.addTextToTextArea("Test3");
+                textBox.append("Test3");
             }
         });
 
@@ -88,5 +115,3 @@ class UI extends JFrame {
 /*
 Main UI class
  */
-
-
