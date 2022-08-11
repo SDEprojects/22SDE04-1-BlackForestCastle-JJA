@@ -17,7 +17,7 @@ class ConsoleUtilities {
     }
 
     public static void pauseForInput() {
-        System.out.println("Press Enter key to continue...");
+        UI.textPrint("Press Enter key to continue...");
         Scanner scanner = new Scanner(System.in);
         scanner.nextLine();
         clearConsole();

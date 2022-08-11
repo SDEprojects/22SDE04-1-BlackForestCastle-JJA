@@ -27,7 +27,7 @@ class NPC extends Character {
     public void attack(Character player) {
         int damageDone = getAttackPower() + randomNumber(10,1);
         player.setHP(player.getHP()-damageDone);
-        System.out.println("The enemy did " + damageDone + " damage. Your health is now " + player.getHP());
+        UI.textPrint("The enemy did " + damageDone + " damage. Your health is now " + player.getHP());
 
     }
     //adds a random item to the NPC inventory
@@ -60,6 +60,8 @@ class NPC extends Character {
     public String getDesc() {
         return desc;
     }
+
+}
 
     private void initializeTauntMap(){
         this.taunt.put(1, "Go home and be a family man!");

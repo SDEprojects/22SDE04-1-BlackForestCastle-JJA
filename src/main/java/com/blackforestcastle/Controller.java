@@ -2,13 +2,8 @@ package com.blackforestcastle;
 
 import org.apache.commons.io.IOUtils;
 
-import javax.swing.*;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.*;
 
 public class Controller {
     private boolean gameRunning;
@@ -39,13 +34,13 @@ public class Controller {
 
     private void basic_info() {
         String basicInfo = jsonReader.getGameInfo()[1].getInfo();
-        System.out.println(basicInfo);
+        UI.textPrint(basicInfo);
     }
 
     private void welcome() {
         try {
             String result = IOUtils.toString(new InputStreamReader(Controller.class.getResourceAsStream("/title.txt"), StandardCharsets.UTF_8));
-            System.out.println(result);
+            UI.textPrint(result);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -53,11 +48,11 @@ public class Controller {
 
     public void commandsInstructions() {
         String basicInfo = jsonReader.getGameInfo()[0].getInfo();
-        System.out.println(basicInfo);
+        UI.textPrint(basicInfo);
     }
 
     public void quitGame() {
-        System.out.println("Thanks for playing!");
+        UI.textPrint("Thanks for playing!");
         gameRunning = false;
     }
 

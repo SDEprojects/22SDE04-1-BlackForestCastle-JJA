@@ -1,11 +1,10 @@
-package com.blackforestcastle.gui;
-
-import com.blackforestcastle.Controller;
+package com.blackforestcastle;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.*;
+import javax.swing.text.DefaultCaret;
 import java.awt.*;
 
 public class TextBox extends JPanel {
@@ -16,10 +15,16 @@ public class TextBox extends JPanel {
         textField = new JTextArea();
         setLayout(new BorderLayout());
         add(new JScrollPane(textField), BorderLayout.CENTER);
+        DefaultCaret car = (DefaultCaret)textField.getCaret();
+        car.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
     }
 
-    public void addTextToTextArea(String text) {
+    public void append(String text) {
         textField.append(text);
+    }
+
+    public String getText() {
+        return textField.getText();
     }
 }
 
