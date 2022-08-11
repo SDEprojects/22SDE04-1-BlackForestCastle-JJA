@@ -34,13 +34,13 @@ public class Controller {
 
     private void basic_info() {
         String basicInfo = jsonReader.getGameInfo()[1].getInfo();
-        System.out.println(basicInfo);
+        UI.textPrint(basicInfo);
     }
 
     private void welcome() {
         try {
             String result = IOUtils.toString(new InputStreamReader(Controller.class.getResourceAsStream("/title.txt"), StandardCharsets.UTF_8));
-            System.out.println(result);
+            UI.textPrint(result);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -48,11 +48,11 @@ public class Controller {
 
     public void commandsInstructions() {
         String basicInfo = jsonReader.getGameInfo()[0].getInfo();
-        System.out.println(basicInfo);
+        UI.textPrint(basicInfo);
     }
 
     public void quitGame(Player player) {
-        System.out.println("Thanks for playing!");
+        UI.textPrint("Thanks for playing!");
         EndGame.saveScore(player);
         gameRunning = false;
     }
