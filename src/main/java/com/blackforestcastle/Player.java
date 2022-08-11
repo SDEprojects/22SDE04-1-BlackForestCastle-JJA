@@ -1,23 +1,25 @@
 package com.blackforestcastle;
 
 import java.util.List;
+import java.util.Scanner;
 
 class Player extends Character {
 
     private Room currentRoom;
     private int experiencePoints;
+    private String name;
 
     public Player() {
 
     }
     public Player(Room theRoom){
+        this();
         setCurrentRoom(theRoom);
     }
 
     public Player(Room theCurrentRoom, int theHp) {
         this(theCurrentRoom);
         super.setHP(theHp);
-
     }
 
     @Override
@@ -85,5 +87,22 @@ class Player extends Character {
 
     public void setCurrentRoom(Room currentRoom) {
         this.currentRoom = currentRoom;
+    }
+
+    public String getName()
+    {
+        if(this.name == null)
+            return "Anonymous";
+        else return this.name;
+    }
+
+    public boolean keepsFighting()
+    {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter \"Q\" to exit the battle\nTo continue, enter any other key.");
+        String input = scanner.nextLine();
+        if(input.trim().equalsIgnoreCase("q"))
+            return false;
+        return true;
     }
 }

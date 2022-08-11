@@ -42,7 +42,7 @@ class NPC extends Character {
     public void printRandomTaunt(){
         Random random = new Random();
         Object[] values = getTauntMap().values().toArray();
-        System.out.println(values[random.nextInt(values.length)]);
+        UI.textPrint((String) values[random.nextInt(values.length)]);
     }
     public static boolean isTaunting()
     {
@@ -61,8 +61,6 @@ class NPC extends Character {
         return desc;
     }
 
-}
-
     private void initializeTauntMap(){
         this.taunt.put(1, "Go home and be a family man!");
         this.taunt.put(2, "My attacks will tear you apart.");
@@ -80,8 +78,4 @@ class NPC extends Character {
     private HashMap<Integer, String> getTauntMap(){
         return this.taunt;
     }
-
-
-
-
 }

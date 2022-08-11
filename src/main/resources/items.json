@@ -5,7 +5,7 @@
   },
   {
     "name": "armor",
-    "description": "Its a suit of protective armor."
+    "description": "Its a suit of protective armor. defense increase: 25 "
   },
   {
     "name": "book",
@@ -13,23 +13,23 @@
   },
   {
     "name": "shield",
-    "description": "A sturdy metal shield, could be useful for defending yourself."
+    "description": "A sturdy metal shield, could be useful for defending yourself. defense increase: 15 "
   },
   {
     "name": "sword",
-    "description": "A pointy metal sword, could be useful for stabbing something."
+    "description": "A pointy metal sword, could be useful for stabbing something. attack increase: 45"
   },
   {
     "name": "bow",
-    "description": "A large oak bow, shoots arrows."
+    "description": "A large oak bow, shoots arrows. attack increase:  24"
   },
   {
     "name": "arrows",
-    "description": "Metal tipped arrows to be shot with a bow."
+    "description": "Metal tipped arrows to be shot with a bow. attack increase: 10 "
   },
   {
     "name": "lever",
-    "description": "A wooden lever, looks like it was taken off something."
+    "description": "A wooden lever, looks like it was taken off something. attack increase: 4  "
   },
   {
     "name": "key",
@@ -49,15 +49,15 @@
   },
   {
     "name": "knife",
-    "description": "A rusty metal dagger with a wooden handle."
+    "description": "A rusty metal dagger with a wooden handle. attack increase: 35 "
   },
   {
     "name": "potion",
-    "description" : "A strange liquid that restores vitality."
+    "description" : "A strange liquid that restores vitality. hp increase:  80"
   },
   {
     "name": "ring",
-    "description" : "A ring filled with magic powers."
+    "description" : "A ring filled with magic powers. attack increase: 35 hp increase:  80 defense increase: 15 "
   }
 
 ]
