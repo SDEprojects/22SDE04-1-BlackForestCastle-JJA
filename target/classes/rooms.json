@@ -36,12 +36,12 @@
   },
   {
     "name": "Central Hallway",
-    "items": [],
+    "desc": "A long corridor filled with gothic paintings, you see an image of a pale orphan, her eyes seem to follow you.  ",
     "north": "North Hallway",
     "south": "South Hallway",
     "east": "Armory",
     "west": "Dining",
-    "desc": "A long corridor filled with gothic paintings, you see an image of a pale orphan, her eyes seem to follow you.  ",
+    "items": [],
     "NPC" : ["goblin"]
   },
   {

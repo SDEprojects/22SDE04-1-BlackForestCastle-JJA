@@ -8,12 +8,25 @@ public abstract class Character {
     private int attackPower;
     private int defendPower;
     private int HP;
-    JSONReader jsonReader = new JSONReader();
-    List<Item> inventory = new ArrayList<>();
+    //JSONReader jsonReader = new JSONReader();
+    private List<Item> inventory;
+
+    public Character(){
+        setInventory(new ArrayList<Item>());
+    }
+    public Character(int theAttackPower){
+        this();
+        setAttackPower(theAttackPower);
+    }
+    public Character(int theAttackPower, int theDefendPower){
+    this(theAttackPower);
+    setDefendPower(theDefendPower);
+    }
 
 
-    public int randomNumber(int n) {
-        int result = (int) ((Math.random() * n) + 1);
+    // true random with range
+    public int randomNumber(int max, int min) {
+        int result = (int) ((Math.random() * (max-min))-min);
         return result;
     }
 
@@ -41,5 +54,13 @@ public abstract class Character {
 
     public void setHP(int HP) {
         this.HP = HP;
+    }
+
+    public List<Item> getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(List<Item> inventory) {
+        this.inventory = inventory;
     }
 }

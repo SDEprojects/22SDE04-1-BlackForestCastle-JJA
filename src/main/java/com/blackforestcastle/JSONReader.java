@@ -5,6 +5,8 @@ import com.google.gson.Gson;
 import java.io.*;
 
 public class JSONReader {
+    //one method to parse and return the corresponding json object
+
 
     // this method parses the rooms.json folder and returns a Rooms Array object
     public Room[] getRooms() {
