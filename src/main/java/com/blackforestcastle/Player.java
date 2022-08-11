@@ -1,6 +1,5 @@
 package com.blackforestcastle;
 
-import java.util.ArrayList;
 import java.util.List;
 
 class Player extends Character {
@@ -22,7 +21,7 @@ class Player extends Character {
         getPlayerAttackPower();
         int damageDone = getAttackPower() + randomNumber(10);
         npc.setHP(npc.getHP() - damageDone);
-        System.out.println("You did " + damageDone + " damage. The enemies health now is " + npc.getHP());
+        UI.textPrint("You did " + damageDone + " damage. The enemies health now is " + npc.getHP());
     }
 
     // helper for attack method
@@ -50,7 +49,7 @@ class Player extends Character {
         for (Item item : inventory) {
             System.out.print(item.getName() + ", ");
         }
-        System.out.println();
+        UI.textPrint("");
     }
 
     public Item checkInventoryForItem(String item) {

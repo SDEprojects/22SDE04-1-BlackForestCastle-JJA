@@ -4,8 +4,6 @@ import org.apache.commons.io.IOUtils;
 
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-import java.util.Locale;
-import java.util.Scanner;
 
 
 public class Commands {
@@ -19,10 +17,16 @@ public class Commands {
 
     //Parse input text and return as an array split into verb and noun
     String[] input() {
-        Scanner scanner = new Scanner(System.in);  // Create a Scanner object
 
         System.out.print(">>");
-        String input = scanner.nextLine();
+        while(UI.pressed_enter==false){
+
+            System.out.print("");
+        }
+
+        UI.pressed_enter = false;
+        String input = UI.textField.getText();
+        UI.textField.setText("");
         previousCommand = input;
 
         String[] splitInput = input.split(" ");// Read user input and split into an array based off of regex.
@@ -30,9 +34,9 @@ public class Commands {
     }
 
     public void interact() {
-        System.out.println("------------");
-        System.out.println(player.getCurrentRoom().roomInfo(player));
-        System.out.println("What would you like to do?");
+        UI.textPrint("------------");
+        UI.textPrint(player.getCurrentRoom().roomInfo(player));
+        UI.textPrint("What would you like to do?");
         String[] input = input();
         ConsoleUtilities.clearConsole();
         String verb = "";
@@ -43,7 +47,7 @@ public class Commands {
             verb = input[0].toLowerCase();
             noun = input[1].toLowerCase();
         } else {
-            System.out.println("Please enter a valid command, such as: ");
+            UI.textPrint("Please enter a valid command, such as: ");
             controller.commandsInstructions();
             return;
         }
@@ -122,12 +126,12 @@ public class Commands {
                     player.setHP(player.getHP() + 30);
                     break;
                 case "book":
-                    System.out.println("A page suggest a key is located somewhere in the bedroom.");
+                    UI.textPrint("A page suggest a key is located somewhere in the bedroom.");
                     break;
                 case "lever":
                     if (player.currentRoom.equals(rooms[0]) && itemObject.getName().equals("lever")) {
-                        System.out.println("You insert the lever into the pulley and begin to crank clockwise, the portcullis raises opening the way you got in.\n" + "You hastily escape through the entrance to freedom.");
-                        System.out.println("Congratulations you win the game!");
+                        UI.textPrint("You insert the lever into the pulley and begin to crank clockwise, the portcullis raises opening the way you got in.\n" + "You hastily escape through the entrance to freedom.");
+                        UI.textPrint("Congratulations you win the game!");
                         controller.quitGame();
                         wonGame = true;
                     }
@@ -135,7 +139,7 @@ public class Commands {
                 case "key":
 
                     if (player.currentRoom.equals(rooms[5])) {
-                        System.out.println("After using the key, you see a lever in the chest.");
+                        UI.textPrint("After using the key, you see a lever in the chest.");
                         rooms[5].itemObjects.add(jsonReader.getItems()[7]);
 
                     }
@@ -144,7 +148,7 @@ public class Commands {
 
             player.inventory.remove(itemObject);
             if (!wonGame) {
-                System.out.println("Used: " + itemObject.getName());
+                UI.textPrint("Used: " + itemObject.getName());
             }
         }
     }
@@ -153,7 +157,7 @@ public class Commands {
         if (direction.matches("north|east|south|west")) {
             goToRoom(direction);
         } else {
-            System.out.println("Invalid direction, enter a valid direction.");
+            UI.textPrint("Invalid direction, enter a valid direction.");
         }
     }
 
@@ -161,7 +165,7 @@ public class Commands {
         Item itemObject = player.currentRoom.checkRoomForItem(item);
         if (itemObject != null && itemObject.getName().equals(item)) {
             player.inventory.add(itemObject);
-            System.out.println("Picked up: " + itemObject.getName());
+            UI.textPrint("Picked up: " + itemObject.getName());
             player.currentRoom.itemObjects.remove(itemObject);
         }
     }
@@ -171,14 +175,14 @@ public class Commands {
         if (itemObject != null && itemObject.getName().equals(item)) {
             player.currentRoom.itemObjects.add(itemObject);
             player.inventory.remove(itemObject);
-            System.out.println("Dropped: " + itemObject.getName());
+            UI.textPrint("Dropped: " + itemObject.getName());
         }
     }
 
     void map() {
         try {
             String result = IOUtils.toString(new InputStreamReader(Commands.class.getResourceAsStream("/map.txt"), StandardCharsets.UTF_8));
-            System.out.println(result);
+            UI.textPrint(result);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -200,14 +204,14 @@ public class Commands {
         while (battleOngoing) {
             player.attack(npc);
             if (npc.getHP() <= 0) {
-                System.out.println("You won the battle!!");
+                UI.textPrint("You won the battle!!");
                 player.currentRoom.getNpcObjects().remove(npc);
                 break;
             }
             npc.attack(player);
             if (player.getHP() <= 0) {
-                System.out.println("*** You're dead.. *** :(");
-                System.out.println("\n");
+                UI.textPrint("*** You're dead.. *** :(");
+                UI.textPrint("\n");
                 controller.newGame();
 
             }
@@ -216,7 +220,7 @@ public class Commands {
     }
 
     void look() {
-        System.out.println(player.getCurrentRoom().roomInfo(player));
+        UI.textPrint(player.getCurrentRoom().roomInfo(player));
     }
 
     void teleport(String room) {
@@ -230,7 +234,7 @@ public class Commands {
         for (Room roomX : rooms) {
             if (roomX.getName().toLowerCase().equals(room) && hasRing) {
                 player.setCurrentRoom(roomX);
-                System.out.println("Teleported to: " + roomX.getName());
+                UI.textPrint("Teleported to: " + roomX.getName());
                 break;
             }
         }
