@@ -51,8 +51,9 @@ public class Controller {
         UI.textPrint(basicInfo);
     }
 
-    public void quitGame() {
+    public void quitGame(Player player) {
         UI.textPrint("Thanks for playing!");
+        EndGame.saveScore(player);
         gameRunning = false;
     }
 
