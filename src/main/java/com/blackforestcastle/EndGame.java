@@ -1,5 +1,7 @@
 package com.blackforestcastle;
 
+import com.blackforestcastle.JSON_Objects.Player;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;

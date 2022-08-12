@@ -1,28 +1,16 @@
-package com.blackforestcastle;
+package com.blackforestcastle.JSON_Objects;
 
-class Item
+public class Item
 {
 
-    String name;
-    String description;
+    private String name;
+    private String description;
 
     public Item(String name, String description)
     {
         this.name = name;
         this.description = description;
     }
-
-    public String getName()
-    {
-        return name;
-    }
-
-    public String getDescription()
-    {
-        return description;
-    }
-
-
     //NOTE: for the three methods below, the boost points must be a 4 character string directly after the colon
     //      no more no less
     public int getHpPointsForItem()
@@ -50,4 +38,19 @@ class Item
         return ((index )!= -1) ? Integer.parseInt(desc.substring(index+phraseLength, index+phraseLength+4).trim()) : 0;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }

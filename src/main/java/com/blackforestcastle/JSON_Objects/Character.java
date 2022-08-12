@@ -1,4 +1,4 @@
-package com.blackforestcastle;
+package com.blackforestcastle.JSON_Objects;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +8,6 @@ public abstract class Character {
     private int attackPower;
     private int defendPower;
     private int HP;
-    //JSONReader jsonReader = new JSONReader();
     private List<Item> inventory;
 
     public Character(){
