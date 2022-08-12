@@ -98,11 +98,8 @@ class Player extends Character {
 
     public boolean keepsFighting()
     {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter \"Q\" to exit the battle\nTo continue, enter any other key.");
-        String input = scanner.nextLine();
-        if(input.trim().equalsIgnoreCase("q"))
-            return false;
-        return true;
+        String input = UI.textField.getText();
+        UI.textPrint("Enter \"Q\" to exit the battle\nTo continue, enter any other key.");
+        return !input.trim().equalsIgnoreCase("q");
     }
 }
