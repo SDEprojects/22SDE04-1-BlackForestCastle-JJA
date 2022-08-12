@@ -59,7 +59,6 @@ public class Commands {
             case "move":
                 go(noun);
                 break;
-
             case "bag":
             case "inventory":
                 bag();
@@ -107,6 +106,9 @@ public class Commands {
                 break;
             case "use":
                 use(noun);
+                break;
+            case "heal":
+                player.heal();
         }
     }
 

@@ -28,7 +28,13 @@ class Player extends Character {
         getPlayerAttackPower();
         int damageDone = getAttackPower() + randomNumber(10,0);
         npc.setHP(npc.getHP() - damageDone);
-        System.out.println("You did " + damageDone + " damage. The enemies health now is " + npc.getHP());
+        UI.textPrint("You did " + damageDone + " damage. The enemies health now is " + npc.getHP());
+    }
+
+    public void heal()
+    {
+        this.setHP(getHP()+10);
+        UI.textPrint("You have gained 10 health points!");
     }
 
     // helper for attack method
@@ -106,4 +112,6 @@ class Player extends Character {
             return false;
         return true;
     }
+
+
 }

@@ -30,9 +30,7 @@ class UI implements KeyListener {
         frame.setBackground(Color.GRAY);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
-
         frame.getContentPane().setBackground(Color.BLACK);
-
         frame.setLayout(new BorderLayout());
 
         textBox = new TextBox();
@@ -52,6 +50,10 @@ class UI implements KeyListener {
         textBox.append(text+"\n");
     }
 
+    public static void graphicPrint(){
+        ;
+    }
+
     public static void main(String[] args) {
         frame = new JFrame();
 
@@ -60,6 +62,8 @@ class UI implements KeyListener {
         controller = Controller.getInstance();
         controller.newGame();
     }
+
+
 
     @Override
     public void keyTyped(KeyEvent e) {
