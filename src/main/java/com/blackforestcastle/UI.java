@@ -7,6 +7,7 @@ import java.awt.event.KeyListener;
 
 class UI implements KeyListener {
     public static JFrame frame;
+    public static JTabbedPane mapTab;
     public static Controller controller;
     public static TextBox textBox;
     public static JTextField textField;
@@ -57,9 +58,18 @@ class UI implements KeyListener {
 
     public static void main(String[] args) {
         frame = new JFrame();
+        mapTab = new JTabbedPane(JTabbedPane.TOP);
 
+        final JTextArea textArea = new JTextArea();
+        textArea.setFont(new Font(Font.MONOSPACED, Font.PLAIN, textArea.getFont().getSize() - 1));
+        textArea.setEditable(false);
+        textArea.setCaretPosition(0);
         UI ui = new UI();
         frame.setVisible(true);
+        JLabel map = new JLabel(MapBox.getText());
+        map.setFont(new Font(Font.MONOSPACED, Font.PLAIN, textArea.getFont().getSize() - 1));;
+        mapTab.addTab("MAP", map);
+        frame.add(mapTab, BorderLayout.EAST);
         controller = Controller.getInstance();
         controller.newGame();
     }
