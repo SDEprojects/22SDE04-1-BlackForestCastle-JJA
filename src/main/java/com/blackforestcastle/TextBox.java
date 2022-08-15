@@ -15,6 +15,8 @@ public class TextBox extends JPanel {
         textField = new JTextArea();
         setLayout(new BorderLayout());
         add(new JScrollPane(textField), BorderLayout.CENTER);
+        textField.setBackground(Color.ORANGE);
+        textField.setFont(new Font("Times new roman", Font.ITALIC, 16));
         DefaultCaret car = (DefaultCaret)textField.getCaret();
         car.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
     }
