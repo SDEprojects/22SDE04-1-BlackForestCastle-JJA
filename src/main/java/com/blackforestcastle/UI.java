@@ -11,7 +11,7 @@ import java.awt.event.KeyListener;
 
 class UI implements KeyListener {
     public static JFrame frame;
-    public static JFrame mapFrame;
+    public static JTabbedPane mapTab;
     public static Controller controller;
     public static TextBox textBox;
     public static JTextField textField;
@@ -39,12 +39,6 @@ class UI implements KeyListener {
         frame.getContentPane().setBackground(Color.LIGHT_GRAY);
         frame.setLayout(new BorderLayout());
 
-        mapFrame.setTitle("Map");
-        mapFrame.setSize(500, 500);
-        mapFrame.setLocationRelativeTo(null);
-        mapFrame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
-        mapFrame.getContentPane().setForeground(Color.cyan);
-        mapFrame.setLayout(new BorderLayout());
 
         textBox = new TextBox();
         mapBox = new MapBox();
@@ -57,7 +51,6 @@ class UI implements KeyListener {
 
         frame.add(textBox, BorderLayout.CENTER);
         frame.add(textField, BorderLayout.SOUTH);
-        mapFrame.add(mapBox, BorderLayout.EAST);
     }
 
     public static void textPrint(String text) {
@@ -66,11 +59,18 @@ class UI implements KeyListener {
 
     public static void main(String[] args) {
         frame = new JFrame();
-        mapFrame = new JFrame();
+        mapTab = new JTabbedPane(JTabbedPane.TOP);
 
+        final JTextArea textArea = new JTextArea();
+        textArea.setFont(new Font(Font.MONOSPACED, Font.PLAIN, textArea.getFont().getSize() - 1));
+        textArea.setEditable(false);
+        textArea.setCaretPosition(0);
         UI ui = new UI();
         frame.setVisible(true);
-        mapFrame.setVisible(true);
+        JLabel map = new JLabel(MapBox.getText());
+        map.setFont(new Font(Font.MONOSPACED, Font.PLAIN, textArea.getFont().getSize() - 1));;
+        mapTab.addTab("MAP", map);
+        frame.add(mapTab, BorderLayout.EAST);
         controller = Controller.getInstance();
         controller.newGame();
     }

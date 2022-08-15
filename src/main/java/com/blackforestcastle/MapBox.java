@@ -19,11 +19,17 @@ class MapBox extends JPanel {
         mapBox.setBackground(Color.ORANGE);
     }
 
-    public static String displayMap(String text) throws IOException {
-        String results = IOUtils.toString(new InputStreamReader(Objects.requireNonNull(Commands.class.getResourceAsStream("/map.txt")), StandardCharsets.UTF_8));
-        if(text.equalsIgnoreCase("Map")) {
-            UI.textPrint(results);
+
+    static String getText()
+    {
+        String result = "";
+        try
+        {
+            result = IOUtils.toString(new InputStreamReader(Commands.class.getResourceAsStream("/map.txt"), StandardCharsets.UTF_8));
+        } catch (Exception e)
+        {
+            e.printStackTrace();
         }
-        return results;
+        return result;
     }
 }

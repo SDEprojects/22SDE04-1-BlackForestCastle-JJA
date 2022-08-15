@@ -98,8 +98,15 @@ class Player extends Character {
 
     public boolean keepsFighting()
     {
+        while(!UI.pressed_enter){
+            System.out.print("");
+        }
+
+        UI.pressed_enter = false;
+
         String input = UI.textField.getText();
         UI.textPrint("Enter \"Q\" to exit the battle\nTo continue, enter any other key.");
+        UI.textField.setText("");
         return !input.trim().equalsIgnoreCase("q");
     }
 }
