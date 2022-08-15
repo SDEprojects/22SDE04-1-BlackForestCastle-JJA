@@ -50,9 +50,6 @@ class UI implements KeyListener {
         textBox.append(text+"\n");
     }
 
-    public static void graphicPrint(){
-        ;
-    }
 
     public static void main(String[] args) {
         frame = new JFrame();
