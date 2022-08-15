@@ -1,36 +1,33 @@
 package com.blackforestcastle;
 
-import org.apache.commons.io.IOUtils;
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 class UI implements KeyListener {
     public static JFrame frame;
-    public static JFrame mapFrame;
     public static Controller controller;
     public static TextBox textBox;
     public static JTextField textField;
     public static JTextArea textPanel1;
-    public static MapBox mapBox;
+    public static JLabel imageLabel;
+    public static  JTabbedPane imagePane;
     static boolean pressed_enter = false;
 
     public UI() {
         startUI();
     }
 
-    public UI(TextBox textBox, JTextField textField, JTextArea textPanel1, MapBox mapBox) {
+    public UI(TextBox textBox, JTextField textField, JTextArea textPanel1) {
         UI.textBox = textBox;
         UI.textField = textField;
         UI.textPanel1 = textPanel1;
-        UI.mapBox = mapBox;
     }
 
     private void startUI() {
+
+        ImageIcon image = new ImageIcon("src/main/resources/img.png");
 
         frame.setTitle("Black Forest Castle");
         frame.setSize(1400, 1100);
@@ -39,16 +36,9 @@ class UI implements KeyListener {
         frame.getContentPane().setBackground(Color.LIGHT_GRAY);
         frame.setLayout(new BorderLayout());
 
-        mapFrame.setTitle("Map");
-        mapFrame.setSize(500, 500);
-        mapFrame.setLocationRelativeTo(null);
-        mapFrame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
-        mapFrame.getContentPane().setForeground(Color.cyan);
-        mapFrame.setLayout(new BorderLayout());
-
         textBox = new TextBox();
-        mapBox = new MapBox();
-
+        imageLabel = new JLabel(image);
+        imagePane = new JTabbedPane(JTabbedPane.TOP);
 
         textField = new JTextField();
         textField.setBackground(Color.LIGHT_GRAY);
@@ -57,7 +47,8 @@ class UI implements KeyListener {
 
         frame.add(textBox, BorderLayout.CENTER);
         frame.add(textField, BorderLayout.SOUTH);
-        mapFrame.add(mapBox, BorderLayout.EAST);
+        imagePane.addTab("Black Forest Castle", imageLabel);
+        frame.add(imagePane, BorderLayout.NORTH);
     }
 
     public static void textPrint(String text) {
@@ -66,11 +57,9 @@ class UI implements KeyListener {
 
     public static void main(String[] args) {
         frame = new JFrame();
-        mapFrame = new JFrame();
 
         UI ui = new UI();
         frame.setVisible(true);
-        mapFrame.setVisible(true);
         controller = Controller.getInstance();
         controller.newGame();
     }
