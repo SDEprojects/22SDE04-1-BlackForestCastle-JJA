@@ -1,10 +1,5 @@
 package com.blackforestcastle;
 
-import org.apache.commons.io.IOUtils;
-
-import java.io.*;
-import java.nio.charset.StandardCharsets;
-
 public class Controller {
     private boolean gameRunning;
 
@@ -24,7 +19,6 @@ public class Controller {
 
     void gameLoop() {
         Commands commands = new Commands();
-        welcome();
         basic_info();
         commandsInstructions();
         while (gameRunning) {
@@ -35,15 +29,6 @@ public class Controller {
     private void basic_info() {
         String basicInfo = jsonReader.getGameInfo()[1].getInfo();
         UI.textPrint(basicInfo);
-    }
-
-    private void welcome() {
-        try {
-            String result = IOUtils.toString(new InputStreamReader(Controller.class.getResourceAsStream("/title.txt"), StandardCharsets.UTF_8));
-            UI.textPrint(result);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     public void commandsInstructions() {
