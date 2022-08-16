@@ -243,7 +243,7 @@ public class Commands {
     {
         NPC npc = player.getCurrentRoom().getNpcObjects().get(0);
         boolean battleOngoing = true;
-        while (battleOngoing)
+        while (true)
         {
             player.attack(npc);
             if (npc.getHP() <= 0)
