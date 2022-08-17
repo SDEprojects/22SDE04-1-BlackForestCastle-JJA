@@ -2,11 +2,8 @@ package com.blackforestcastle;
 
 import com.blackforestcastle.JSON_Objects.*;
 import com.blackforestcastle.utility.JSONReader;
-import org.apache.commons.io.IOUtils;
 
 import java.awt.*;
-import java.io.*;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Scanner;
 
@@ -39,7 +36,7 @@ public class Controller {
         //initialize anything needed here
         Commands_v2 command_controller = new Commands_v2();
         //print initial welcome message
-        welcome();
+       // welcome();
         //show available instructions
         System.out.println(gameInfo.getInfo());
         //start game loop
@@ -52,6 +49,17 @@ public class Controller {
             //print out player info
             System.out.println(player.toString());
             System.out.println("What would you like to do?");
+
+
+            UI.textPrint("------------");
+            //UI.textPrint(player.getCurrentRoom().roomInfo(player));
+            //print out room info
+            UI.textPrint(building.getCurrentRoom().toString());
+            //print out player info
+            UI.textPrint(player.toString());
+            UI.mapTabGraphicPrint(String.valueOf(player.getHP()));
+
+            UI.textPrint("What would you like to do?");
 
             ConsoleUtilities.clearConsole();
 
@@ -76,12 +84,20 @@ public class Controller {
         String[] splitInput = null;
         try {
             System.out.print(">>");
-            String input = scanner.nextLine();
+            UI.textPrint(">>");
+            while(!UI.pressed_enter ){
+                System.out.print("");
+            }
+            UI.pressed_enter = false;
+            String input = UI.textField.getText();
+            UI.textField.setText("");
+            //String input = scanner.nextLine();
             //previousCommand = input;
             splitInput = input.trim().split(" ");// Read user input and split into an array based off of regex.
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
         }
+        return splitInput;
     }
 
     private Building buildBuildingDefault() {
@@ -121,16 +137,17 @@ public class Controller {
         return building;
     }
 
-    private void welcome() {
-        try {
-            String result = IOUtils.toString(new InputStreamReader(Controller.class.getResourceAsStream("/title.txt"), StandardCharsets.UTF_8));
-            System.out.println(result);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//    private void welcome() {
+//        try {
+//            String result = IOUtils.toString(new InputStreamReader(Controller.class.getResourceAsStream("/title.txt"), StandardCharsets.UTF_8));
+//            System.out.println(result);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
     private void basic_info() {
-        String basicInfo = jsonReader.getGameInfo()[1].getInfo();
-        UI.textPrint(basicInfo);
+        //needs to be previous intro
+        UI.textPrint(gameInfo.getInfo());
     }
 
 

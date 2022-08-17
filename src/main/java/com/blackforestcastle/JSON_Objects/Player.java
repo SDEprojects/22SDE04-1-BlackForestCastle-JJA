@@ -1,5 +1,7 @@
 package com.blackforestcastle.JSON_Objects;
 
+import com.blackforestcastle.UI;
+
 import java.util.Scanner;
 
 public class Player extends Character {
@@ -27,6 +29,11 @@ public class Player extends Character {
         this(theName);
         super.setHP(theHp);
     }
+    public void heal()
+    {
+        addHP(10);
+        UI.textPrint("You have gained 10 health points!");
+    }
 
 
     @Override
@@ -34,6 +41,7 @@ public class Player extends Character {
         int damageDone = getAttackPower() + randomNumber(10, 0);
         npc.setHP(npc.getHP() - damageDone);
         System.out.println("You did " + damageDone + " damage. The enemies health now is " + npc.getHP());
+        UI.textPrint("You did " + damageDone + " damage. The enemies health now is " + npc.getHP());
     }
 
     public void showInventory() {

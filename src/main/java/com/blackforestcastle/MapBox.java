@@ -25,7 +25,7 @@ class MapBox extends JPanel {
         String result = "";
         try
         {
-            result = IOUtils.toString(new InputStreamReader(Commands.class.getResourceAsStream("/map.txt"), StandardCharsets.UTF_8));
+            result = IOUtils.toString(new InputStreamReader(Commands_v2.class.getResourceAsStream("/map.txt"), StandardCharsets.UTF_8));
         } catch (Exception e)
         {
             e.printStackTrace();

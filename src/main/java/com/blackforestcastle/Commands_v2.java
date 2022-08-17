@@ -1,12 +1,8 @@
 package com.blackforestcastle;
 
 import com.blackforestcastle.JSON_Objects.*;
-import org.apache.commons.io.IOUtils;
 
 import java.awt.*;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
-import java.util.Scanner;
 
 import static com.blackforestcastle.JSON_Objects.NPC.isTaunting;
 
@@ -58,6 +54,7 @@ public class Commands_v2 {
             case "show":
             case "see":
                 System.out.println(theBuilding.getCurrentRoom().toString());
+                UI.textPrint(theBuilding.getCurrentRoom().toString());
                 ;
                 break;
             case "teleport":
@@ -67,6 +64,8 @@ public class Commands_v2 {
             case "?":
             case "help":
                 System.out.println(theGameInfo.getInfo());
+                UI.textPrint(theGameInfo.getInfo());
+
                 ;
                 break;
             case "quit":
@@ -74,17 +73,18 @@ public class Commands_v2 {
             case "terminate":
                 quitGame(thePlayer);
                 break;
-            case "map":
-                map();
-                break;
             case "use":
                 use(thePlayer, secondStatement,theBuilding);
                 break;
             case "scores":
                 GameInfo.viewScores();
                 break;
+            case "heal":
+                thePlayer.heal();
+                break;
             default:
                 System.out.println("invalid command");
+                UI.textPrint("invalid command");
         }
 
 
@@ -120,6 +120,7 @@ public class Commands_v2 {
                         theBuilding.setCurrentRoom(theBuilding.getRooms()[theCurrentX][theCurrentY]);
                         theBuilding.setCurrentRoomCoordinates(new Point(theCurrentX, theCurrentY));
                         System.out.println("Moved to the " + theBuilding.getCurrentRoom().getName());
+                        UI.textPrint("Moved to the " + theBuilding.getCurrentRoom().getName());
                     }
                     break;
                 case "south":
@@ -129,6 +130,7 @@ public class Commands_v2 {
                         theBuilding.setCurrentRoom(theBuilding.getRooms()[theCurrentX][theCurrentY]);
                         theBuilding.setCurrentRoomCoordinates(new Point(theCurrentX, theCurrentY));
                         System.out.println("Moved to the " + theBuilding.getCurrentRoom().getName());
+                        UI.textPrint("Moved to the " + theBuilding.getCurrentRoom().getName());
                     }
                     break;
                 case "east":
@@ -138,6 +140,7 @@ public class Commands_v2 {
                         theBuilding.setCurrentRoom(theBuilding.getRooms()[theCurrentX][theCurrentY]);
                         theBuilding.setCurrentRoomCoordinates(new Point(theCurrentX, theCurrentY));
                         System.out.println("Moved to the " + theBuilding.getCurrentRoom().getName());
+                        UI.textPrint("Moved to the " + theBuilding.getCurrentRoom().getName());
                     }
                     break;
                 case "west":
@@ -147,6 +150,7 @@ public class Commands_v2 {
                         theBuilding.setCurrentRoom(theBuilding.getRooms()[theCurrentX][theCurrentY]);
                         theBuilding.setCurrentRoomCoordinates(new Point(theCurrentX, theCurrentY));
                         System.out.println("Moved to the " + theBuilding.getCurrentRoom().getName());
+                        UI.textPrint("Moved to the " + theBuilding.getCurrentRoom().getName());
                     }
                     break;
             }
@@ -160,6 +164,7 @@ public class Commands_v2 {
                 thePlayer.getInventory().add(itemInTheRoom);
                 theBuilding.getCurrentRoom().getItems().remove(itemInTheRoom);
                 System.out.println("Player added " + itemInTheRoom.getName() + " to inventory");
+                UI.textPrint("Player added " + itemInTheRoom.getName() + " to inventory");
                 break;
             }
         }
@@ -172,6 +177,7 @@ public class Commands_v2 {
                 thePlayer.getInventory().remove(itemInTheRoom);
                 theBuilding.getCurrentRoom().getItems().add(itemInTheRoom);
                 System.out.println("Player added " + itemInTheRoom.getName() + " to inventory");
+                UI.textPrint("Player added " + itemInTheRoom.getName() + " to inventory");
                 break;
             }
         }
@@ -180,6 +186,7 @@ public class Commands_v2 {
     private void battle(Building theBuilding, Player thePlayer, String theNPCName) {
         if (theBuilding.getCurrentRoom().getNpcs().isEmpty()) {
             System.out.println("there's nothing to attack in here");
+            UI.textPrint("there's nothing to attack in here");
         } else {
             for (NPC enemyInTheRoom :
                     theBuilding.getCurrentRoom().getNpcs()) {
@@ -197,6 +204,7 @@ public class Commands_v2 {
                         //check if player is alive
                         if (thePlayer.getHP() <= 0) {
                             System.out.println("*** You're dead.. *** :(\n");
+                            UI.textPrint("*** You're dead.. *** :(\n");
                             EndGame.saveScore(thePlayer);
                             bothAlive = false;
                         }
@@ -204,9 +212,12 @@ public class Commands_v2 {
                         else if (enemyInTheRoom.getHP() <= 0) {
                             bothAlive = false;
                             System.out.println("You won the battle and gained 100 experience points!!");
+                            UI.textPrint("You won the battle and gained 100 experience points!!");
+
                             thePlayer.setExperiencePoints(thePlayer.getExperiencePoints() + 100);
                             if (!enemyInTheRoom.getInventory().isEmpty()) {
                                 System.out.println("Enemy dropped " + enemyInTheRoom.getInventory().get(0).getName() + " on the ground!");
+                                UI.textPrint("Enemy dropped " + enemyInTheRoom.getInventory().get(0).getName() + " on the ground!");
                                 theBuilding.getCurrentRoom().getItems().add(enemyInTheRoom.getInventory().get(0));
                             }
                             theBuilding.getCurrentRoom().getNpcs().remove(enemyInTheRoom);
@@ -247,14 +258,18 @@ public class Commands_v2 {
                     case "key":
                         if (theItemName.equalsIgnoreCase("lever") && theBuilding.getCurrentRoom().getName().equalsIgnoreCase("Entrance")) {
                             System.out.println("You insert the lever into the pulley and begin to crank clockwise, the portcullis raises opening the way you got in.\n" + "You hastily escape through the entrance to freedom.");
+                            UI.textPrint("You insert the lever into the pulley and begin to crank clockwise, the portcullis raises opening the way you got in.\n" + "You hastily escape through the entrance to freedom.");
                             System.out.println("Congratulations you win the game!");
+                            UI.textPrint("Congratulations you win the game!");
                             quitGame(thePlayer);
                         }
                     default:
                         if (item.getName().equalsIgnoreCase("book")) {
                             System.out.println("A page suggest a key is located somewhere in the bedroom.");
+                            UI.textPrint("A page suggest a key is located somewhere in the bedroom.");
                         } else {
                             System.out.println("The item either isn't usable or doesn't exist..");
+                            UI.textPrint("The item either isn't usable or doesn't exist..");
                         }
                 }
                 break;
@@ -264,18 +279,13 @@ public class Commands_v2 {
 
     private void quitGame(Player thPlayer) {
         System.out.println("Thanks for playing!");
+        UI.textPrint("Thanks for playing!");
         EndGame.saveScore(thPlayer);
         System.exit(0);
     }
 
-    private void map() {
-        try {
-            String result = IOUtils.toString(new InputStreamReader(Commands_v2.class.getResourceAsStream("/map.txt"), StandardCharsets.UTF_8));
-            System.out.println(result);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+
+
 
     private void teleport(Building theBuilding, String theRoomName) {
         for (int i = 0; i < theBuilding.getRooms().length; i++) {
@@ -286,7 +296,11 @@ public class Commands_v2 {
                     theBuilding.setCurrentRoom(room);
                     theBuilding.setCurrentRoomCoordinates(new Point(i, y));
                     System.out.println("Teleported to " + theRoomName);
+                    UI.textPrint("Teleported to " + theRoomName);
                     System.out.println(room.toString());
+                    UI.textPrint(room.toString());
+
+
                 }
                 y++;
             }
