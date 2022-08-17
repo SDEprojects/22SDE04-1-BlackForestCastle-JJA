@@ -80,13 +80,8 @@ class UI implements KeyListener
         textBox.append(text + "\n");
     }
 
-<<<<<<< HEAD
-
-    public static void main(String[] args) {
-=======
     public static void main(String[] args)
     {
->>>>>>> ef6a23f5802f4d4c3ebc2a50be799f2a1bff38e1
         frame = new JFrame();
         mapTab = new JTabbedPane(JTabbedPane.TOP);
 
