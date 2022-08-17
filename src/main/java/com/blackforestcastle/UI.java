@@ -154,7 +154,7 @@ public class UI implements KeyListener
                 clip.setMicrosecondPosition(0);
 
                 clip.start();
-                System.out.println("playing moosic");
+                System.out.println("playing music");
             }
 
         } catch (Exception e)
