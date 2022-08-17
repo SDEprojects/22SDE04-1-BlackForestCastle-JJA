@@ -81,8 +81,7 @@ public class UI implements KeyListener
 //        button.addActionListener(new AL());
     }
 
-    public static void textPrint(String text)
-    {
+    public static void textPrint(String text) {
         textBox.append(text + "\n");
     }
 

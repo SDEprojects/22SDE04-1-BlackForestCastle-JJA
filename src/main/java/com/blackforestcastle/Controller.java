@@ -35,22 +35,12 @@ public class Controller {
     public void gameLoop() {
         //initialize anything needed here
         Commands_v2 command_controller = new Commands_v2();
-        //print initial welcome message
-       // welcome();
+        basic_info();
         //show available instructions
-        System.out.println(gameInfo.getInfo());
+        //UI.textPrint(gameInfo.getInfo());
         //start game loop
 
         while (gameRunning) {
-            //display room info
-            System.out.println("------------");
-            //print out room info
-            System.out.println(building.getCurrentRoom().toString());
-            //print out player info
-            System.out.println(player.toString());
-            System.out.println("What would you like to do?");
-
-
             UI.textPrint("------------");
             //UI.textPrint(player.getCurrentRoom().roomInfo(player));
             //print out room info
@@ -83,7 +73,6 @@ public class Controller {
     private String[] input() {
         String[] splitInput = null;
         try {
-            System.out.print(">>");
             UI.textPrint(">>");
             while(!UI.pressed_enter ){
                 System.out.print("");
@@ -91,8 +80,6 @@ public class Controller {
             UI.pressed_enter = false;
             String input = UI.textField.getText();
             UI.textField.setText("");
-            //String input = scanner.nextLine();
-            //previousCommand = input;
             splitInput = input.trim().split(" ");// Read user input and split into an array based off of regex.
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
@@ -115,7 +102,6 @@ public class Controller {
                         room.getItems().add(item);
                         break;
                     }
-
                 }
             }
             //add one random item and npc to each room
@@ -137,27 +123,17 @@ public class Controller {
         return building;
     }
 
-//    private void welcome() {
-//        try {
-//            String result = IOUtils.toString(new InputStreamReader(Controller.class.getResourceAsStream("/title.txt"), StandardCharsets.UTF_8));
-//            System.out.println(result);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
     private void basic_info() {
         //needs to be previous intro
         UI.textPrint(gameInfo.getInfo());
     }
 
 
-    public void printCommandsInstructions() {
-        System.out.println(gameInfo.getInfo());
-        UI.textPrint(gameInfo.getInfo());
-    }
+//    public void printCommandsInstructions() {
+//        UI.textPrint(gameInfo.getInfo());
+//    }
 
     public void quitGame(Player player) {
-        System.out.println("Thanks for playing!");
         UI.textPrint("Thanks for playing!");
         EndGame.saveScore(player);
         gameRunning = false;

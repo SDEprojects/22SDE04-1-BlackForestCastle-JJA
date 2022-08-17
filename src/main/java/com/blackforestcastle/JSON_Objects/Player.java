@@ -40,7 +40,6 @@ public class Player extends Character {
     public void attack(Character npc) {
         int damageDone = getAttackPower() + randomNumber(10, 0);
         npc.setHP(npc.getHP() - damageDone);
-        System.out.println("You did " + damageDone + " damage. The enemies health now is " + npc.getHP());
         UI.textPrint("You did " + damageDone + " damage. The enemies health now is " + npc.getHP());
     }
 
@@ -49,7 +48,7 @@ public class Player extends Character {
         for (Item item : super.getInventory()) {
             System.out.print("\t" + item.getName());
         }
-        System.out.println();
+        UI.textPrint("");
     }
 
 
