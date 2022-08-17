@@ -3,18 +3,19 @@ package com.blackforestcastle.JSON_Objects;
 import com.blackforestcastle.utility.JSONReader;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Random;
 
 public class NPC extends Character {
-
-    private String name;
     private String desc;
     //private boolean isFriendly;
-    private HashMap<Integer, String> taunt = new HashMap<>();
+    private HashMap<Integer, String> taunt;
 
     //keep empty json reader will overwrite
     public NPC() {
+        setTaunt(new HashMap<>());
         initializeTauntMap();
+
     }
 
     public NPC(String theName) {
@@ -36,9 +37,9 @@ public class NPC extends Character {
     }
 
     //adds a random item to the NPC inventory
-    public void addRandomItemToInventory(Item[] allThePossibleItems) {
+    public void addRandomItemToInventory(List<Item> allThePossibleItems) {
         //add one random item pulled from the allItems list generated based on the size of the list
-        super.getInventory().add(allThePossibleItems[super.randomNumber(allThePossibleItems.length, 0)]);
+        super.getInventory().add(allThePossibleItems.get(super.randomNumber(allThePossibleItems.size(), 0)));
     }
 
     public void printRandomTaunt() {
@@ -46,7 +47,7 @@ public class NPC extends Character {
         Object[] values = getTauntMap().values().toArray();
         System.out.println(values[random.nextInt(values.length)]);
     }
-
+    //hard coded default
     private void initializeTauntMap() {
         this.taunt.put(1, "Go home and be a family man!");
         this.taunt.put(2, "My attacks will tear you apart.");
@@ -66,22 +67,19 @@ public class NPC extends Character {
         return this.taunt;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getDesc() {
         return desc;
     }
-
 
     public void setDesc(String desc) {
         this.desc = desc;
     }
 
+    public HashMap<Integer, String> getTaunt() {
+        return taunt;
+    }
 
+    public void setTaunt(HashMap<Integer, String> taunt) {
+        this.taunt = taunt;
+    }
 }

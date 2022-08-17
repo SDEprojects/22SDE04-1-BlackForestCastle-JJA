@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Room_v2 {
     //fields are set by json parser and may not directly reflect being referenced or set
-    private String name, desc;
+    private String name, description;
 
     //directions hold next room name
     //maybe other room information should be held at a higher level
@@ -25,7 +25,15 @@ public class Room_v2 {
     public Room_v2(String theName, String theDesc) {
         this();
         setName(theName);
-        setDesc(theDesc);
+        setDescription(theDesc);
+    }
+    public void addRandomNpc(List<NPC> allNpcs){
+        int randomInt = (int) (Math.random()*(allNpcs.size()-0)+0);
+        npcs.add(allNpcs.get(randomInt));
+    }
+    public void addRandomItem(List<Item> allItems){
+        int randomInt = (int) (Math.random()*(allItems.size()-0)+0);
+        items.add(allItems.get(randomInt));
     }
 
     public String getName() {
@@ -36,12 +44,12 @@ public class Room_v2 {
         this.name = name;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public List<Item> getItems() {
@@ -63,7 +71,7 @@ public class Room_v2 {
     @Override
     public String toString() {
         StringBuilder stringBuilder =new StringBuilder();
-        stringBuilder.append(getName()+"\n"+getDesc()+"\n");
+        stringBuilder.append(getName()+"\n"+ getDescription()+"\n");
         stringBuilder.append("Items in the room... ");
         for (Item item :
                 getItems()) {

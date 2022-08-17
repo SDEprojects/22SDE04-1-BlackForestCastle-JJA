@@ -19,12 +19,11 @@ public class JSONReader {
         setGson(new Gson());
     }
 
-    public List<Room_v2> makeRoomObjects() {
+    public Room_v2[] makeRoomObjects() {
         //give the reader the appropriate object class to build
-        setReader(new InputStreamReader(Room_v2.class.getResourceAsStream("/rooms.json")));
-
-        Room_v2[] rooms = gson.fromJson(reader, Room_v2[].class);
-        return Arrays.asList(rooms);
+        setReader(new InputStreamReader(Room_v2.class.getResourceAsStream("/room_name&desc.json")));
+        Room_v2[] rooms_ALL = gson.fromJson(reader, Room_v2[].class);
+        return rooms_ALL;
     }
 
     // This method parses the gameInfo.json file and returns a GameInfo Object that contains the required information.
@@ -36,14 +35,14 @@ public class JSONReader {
 
     public List<Item> makeItemObjects() {
        setReader(new InputStreamReader(Item.class.getResourceAsStream("/items.json")));
-        Item[] items = gson.fromJson(reader, Item[].class);
-        return Arrays.asList(items);
+        Item[] items_ALL = gson.fromJson(reader, Item[].class);
+        return Arrays.asList(items_ALL);
     }
 
     public List<NPC> makeNPCObjects() {
         setReader( new InputStreamReader(NPC.class.getResourceAsStream("/npc.json")));
-       NPC[] npcs = gson.fromJson(reader, NPC[].class);
-        return Arrays.asList(npcs);
+       NPC[] npcs_ALL = gson.fromJson(reader, NPC[].class);
+        return Arrays.asList(npcs_ALL);
     }
 
     public Gson getGson() {

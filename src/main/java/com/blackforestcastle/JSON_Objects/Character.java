@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Character {
-
+    private String name;
     private int attackPower;
     private int defendPower;
     private int HP;
@@ -30,6 +30,26 @@ public abstract class Character {
     }
 
     public abstract void attack(Character character);
+
+    public void addAttackPower(int attackBoost){
+        this.attackPower += attackBoost;
+    }
+
+    public void addDefensePoints(int defenseBoost){
+        this.defendPower += defenseBoost;
+    }
+
+    public void addHP(int hpBoost){
+        this.HP += hpBoost;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public int getAttackPower() {
         return attackPower;
@@ -61,17 +81,5 @@ public abstract class Character {
 
     public void setInventory(List<Item> inventory) {
         this.inventory = inventory;
-    }
-
-    public void addAttackPower(int attackBoost){
-        this.attackPower += attackBoost;
-    }
-
-    public void addDefensePoints(int defenseBoost){
-        this.defendPower += defenseBoost;
-    }
-
-    public void addHP(int hpBoost){
-        this.HP += hpBoost;
     }
 }
