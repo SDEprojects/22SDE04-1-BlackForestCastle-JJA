@@ -51,6 +51,7 @@ class UI implements KeyListener
         frame.setSize(1400, 1100);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
+        frame.getContentPane().setBackground(Color.BLACK);
         frame.getContentPane().setBackground(Color.LIGHT_GRAY);
         frame.setLayout(new BorderLayout());
 
@@ -116,6 +117,8 @@ class UI implements KeyListener
         controller = Controller.getInstance();
         controller.newGame();
     }
+
+
 
     @Override
     public void keyTyped(KeyEvent e)

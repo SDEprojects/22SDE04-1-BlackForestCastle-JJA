@@ -1,5 +1,6 @@
 package com.blackforestcastle;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -30,6 +31,12 @@ class Player extends Character {
         UI.textPrint("You did " + damageDone + " damage. The enemies health now is " + npc.getHP());
     }
 
+    public void heal()
+    {
+        this.setHP(getHP()+10);
+        UI.textPrint("You have gained 10 health points!");
+    }
+
     // helper for attack method
     public void getPlayerAttackPower() {
         // knife, sword, bow, arrow
@@ -55,7 +62,7 @@ class Player extends Character {
         for (Item item : super.getInventory()) {
             System.out.print(item.getName() + ", ");
         }
-        UI.textPrint("");
+        System.out.println();
     }
 
     public Item checkInventoryForItem(String item) {
@@ -109,4 +116,6 @@ class Player extends Character {
         UI.textField.setText("");
         return !input.trim().equalsIgnoreCase("q");
     }
+
+
 }
