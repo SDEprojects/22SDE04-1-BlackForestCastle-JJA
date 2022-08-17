@@ -1,9 +1,14 @@
 package com.blackforestcastle;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.File;
+
 
 class UI implements KeyListener
 {
@@ -45,6 +50,7 @@ class UI implements KeyListener
     private void startUI()
     {
 
+        playMusic("cold-cinematic-landscape-116954.wav");
         ImageIcon image = new ImageIcon("src/main/resources/img.png");
 
         frame.setTitle("Black Forest Castle");
@@ -96,8 +102,6 @@ class UI implements KeyListener
         mapTab.addTab("MAP", map);
 
 
-
-
 //        //todo: remove hardcoded string
 //        healthField = new JTextField("100");
 //        healthField.setFont(new Font("Serif", Font.BOLD, 18));
@@ -117,7 +121,6 @@ class UI implements KeyListener
         controller = Controller.getInstance();
         controller.newGame();
     }
-
 
 
     @Override
@@ -140,8 +143,29 @@ class UI implements KeyListener
     private void playMusic(String filePath)
     {
 
+        try
+        {
+            File musicPath = new File(filePath);
+
+            if(musicPath.exists())
+            {
+                AudioInputStream audioInput = AudioSystem.getAudioInputStream(musicPath);
+                Clip clip = AudioSystem.getClip();
+                clip.open(audioInput);
+                clip.setMicrosecondPosition(0);
+
+                clip.start();
+                System.out.println("playing moosic");
+            }
+
+        } catch (Exception e)
+        {
+            System.out.println("no music");
+        }
     }
-    private static void stopMusic(){
+
+    private static void stopMusic()
+    {
 
     }
 }
