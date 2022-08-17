@@ -5,7 +5,6 @@
     "defendPower": 10,
     "inventory": [],
     "HP": 30,
-    "isFriendly": false,
     "desc": "An ugly creature, holding a crude dagger.  Impedes the path forward. "
   },
   {
@@ -14,7 +13,6 @@
     "defendPower": 5,
     "inventory": [],
     "HP": 20,
-    "isFriendly": false,
     "desc": "A giant monstrous spider with piercing fangs. It watches you as you enter the room. "
   }
 
