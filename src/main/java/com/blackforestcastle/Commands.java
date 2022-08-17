@@ -1,10 +1,5 @@
 package com.blackforestcastle;
 
-import org.apache.commons.io.IOUtils;
-
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
-
 import static com.blackforestcastle.NPC.isTaunting;
 
 
@@ -20,7 +15,7 @@ public class Commands {
     //Parse input text and return as an array split into verb and noun
     String[] input() {
 
-        System.out.print(">>");
+        UI.textPrint(">>");
 
         while(!UI.pressed_enter){
             System.out.print("");
@@ -96,9 +91,6 @@ public class Commands {
             case "exit":
             case "terminate":
                 controller.quitGame(player);
-                break;
-            case "map":
-                map();
                 break;
             case "new":
             case "restart":
@@ -229,17 +221,6 @@ public class Commands {
         }
     }
 
-    void map()
-    {
-        try
-        {
-            String result = IOUtils.toString(new InputStreamReader(Commands.class.getResourceAsStream("/map.txt"), StandardCharsets.UTF_8));
-            UI.textPrint(result);
-        } catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-    }
 
     void bag()
     {
@@ -259,7 +240,7 @@ public class Commands {
     {
         NPC npc = player.getCurrentRoom().getNpcObjects().get(0);
         boolean battleOngoing = true;
-        while (battleOngoing)
+        while (true)
         {
             player.attack(npc);
             if (npc.getHP() <= 0)
