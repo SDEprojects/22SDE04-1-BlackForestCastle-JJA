@@ -1,0 +1,20 @@
+[
+  {
+    "name": "goblin",
+    "attackPower": 15,
+    "defendPower": 10,
+    "inventory": [],
+    "HP": 30,
+    "desc": "An ugly creature, holding a crude dagger.  Impedes the path forward. "
+  },
+  {
+    "name": "spider",
+    "attackPower": 10,
+    "defendPower": 5,
+    "inventory": [],
+    "HP": 20,
+    "desc": "A giant monstrous spider with piercing fangs. It watches you as you enter the room. "
+  }
+
+
+]
