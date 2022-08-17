@@ -1,21 +1,26 @@
-package com.blackforestcastle;
+package com.blackforestcastle.JSON_Objects;
 
 import java.io.*;
 
 public class GameInfo
 {
-    String info;
+    private String info;
 
     // Constructors
     public GameInfo(String info)
     {
-        this.info = info;
+        setInfo(info);
     }
 
     // Setters/Getters
-    public String getInfo()
-    {
+
+
+    public String getInfo() {
         return info;
+    }
+
+    public void setInfo(String info) {
+        this.info = info;
     }
 
     public static void viewScores(){

@@ -10,7 +10,7 @@ import java.awt.event.KeyListener;
 import java.io.File;
 
 
-class UI implements KeyListener
+public class UI implements KeyListener
 {
     public static JFrame frame;
     public static JTabbedPane mapTab;
@@ -118,7 +118,7 @@ class UI implements KeyListener
 
 
         frame.add(mapTab, BorderLayout.EAST);
-        controller = Controller.getInstance();
+        controller = new Controller();
         controller.newGame();
     }
 

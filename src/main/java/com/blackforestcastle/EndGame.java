@@ -1,5 +1,7 @@
 package com.blackforestcastle;
 
+import com.blackforestcastle.JSON_Objects.Player;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -7,6 +9,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 class EndGame {
+
     public static void saveScore(Player player){
         try
         {
