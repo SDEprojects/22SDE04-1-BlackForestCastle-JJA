@@ -33,7 +33,6 @@ public class NPC extends Character {
     public void attack(Character player) {
         int damageDone = getAttackPower() + randomNumber(10,1);
         player.setHP(player.getHP()-damageDone);
-        System.out.println("The enemy did " + damageDone + " damage. Your health is now " + player.getHP());
         UI.textPrint("The enemy did " + damageDone + " damage. Your health is now " + player.getHP());
         UI.mapTabGraphicPrint(String.valueOf(player.getHP()));
 
@@ -48,7 +47,6 @@ public class NPC extends Character {
     public void printRandomTaunt() {
         Random random = new Random();
         Object[] values = getTauntMap().values().toArray();
-        System.out.println(values[random.nextInt(values.length)]);
         UI.textPrint((String) values[random.nextInt(values.length)]);
     }
     //hard coded default
