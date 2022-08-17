@@ -30,12 +30,6 @@
             <version>5.9.0</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>com.github.biconou</groupId>
-            <artifactId>AudioPlayer</artifactId>
-            <version>0.2.5</version>
-            <scope>compile</scope>
-        </dependency>
         <!-- https://mvnrepository.com/artifact/com.github.biconou/AudioPlayer -->
 
 
