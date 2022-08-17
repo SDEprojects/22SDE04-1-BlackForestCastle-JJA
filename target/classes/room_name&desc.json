@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Entrance",
+    "description": "The Portcullis is slammed shut. There is a pulley system that is missing a lever."
+  },
+  {
+    "name": "Kitchen",
+    "description": "A place used to prepare meals, the cutlery is old and rusted."
+  },
+  {
+    "name": "North Hallway",
+    "description": "Statues of past kings in armor, torches and banners."
+  },
+  {
+    "name": "Living Room",
+    "description": "A fireplace with years of ash and scorch marks dominates the room. An old book sits on a table."
+  },
+  {
+    "name": "Dining",
+    "description": "A painting of a family sits above the dining table, the father's gaze pierces through you."
+  },
+  {
+    "name": "Central Hallway",
+    "description": "A long corridor filled with gothic paintings, you see an image of a pale orphan, her eyes seem to follow you. "
+  },
+  {
+    "name": "Armory",
+    "description": "Shields, swords, bows and arrows are stacked on shelves and scattered across the ground. There is a locked chest in the corner."
+  },
+  {
+    "name": "Pantry",
+    "description": "You see odd items, nothing looks edible. Rats scurry around your feet."
+  },
+  {
+    "name": "South Hallway",
+    "description": "Suits of armor line the sides of the hallway, it almost seems as if they want to lunge out at you."
+  },
+  {
+    "name": "Bedroom",
+    "description": "A big canopy bed sits in the middle of the room, it is riddled with spider webs and dust. "
+  }
+]
