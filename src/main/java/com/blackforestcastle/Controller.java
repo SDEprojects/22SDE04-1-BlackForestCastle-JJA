@@ -82,8 +82,6 @@ public class Controller {
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
         }
-
-        return splitInput;
     }
 
     private Building buildBuildingDefault() {
@@ -130,12 +128,23 @@ public class Controller {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    private void basic_info() {
+        String basicInfo = jsonReader.getGameInfo()[1].getInfo();
+        UI.textPrint(basicInfo);
     }
+
 
     public void printCommandsInstructions() {
         System.out.println(gameInfo.getInfo());
+        UI.textPrint(gameInfo.getInfo());
     }
 
+    public void quitGame(Player player) {
+        System.out.println("Thanks for playing!");
+        UI.textPrint("Thanks for playing!");
+        EndGame.saveScore(player);
+        gameRunning = false;
+    }
 
     public void newGame() {
         gameLoop();
