@@ -8,7 +8,8 @@ public class TextBox extends JPanel {
 
     private final JTextArea textField;
 
-    public TextBox() {
+    public TextBox()
+    {
         textField = new JTextArea();
         setLayout(new BorderLayout());
         add(new JScrollPane(textField), BorderLayout.CENTER);
@@ -21,6 +22,7 @@ public class TextBox extends JPanel {
     public void append(String text) {
         textField.append(text);
     }
+
 
     public String getText() {
         return textField.getText();

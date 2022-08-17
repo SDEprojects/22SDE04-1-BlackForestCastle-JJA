@@ -28,7 +28,7 @@ class NPC extends Character {
         int damageDone = getAttackPower() + randomNumber(10,1);
         player.setHP(player.getHP()-damageDone);
         UI.textPrint("The enemy did " + damageDone + " damage. Your health is now " + player.getHP());
-
+        UI.mapTabGraphicPrint(String.valueOf(player.getHP()));
     }
     //adds a random item to the NPC inventory
     public void addRandomItemToInventory(){

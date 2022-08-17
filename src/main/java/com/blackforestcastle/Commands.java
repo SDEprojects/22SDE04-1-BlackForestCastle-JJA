@@ -17,7 +17,7 @@ public class Commands {
 
         UI.textPrint(">>");
 
-        while(!UI.pressed_enter){
+        while(!UI.pressed_enter ){
             System.out.print("");
         }
 
@@ -33,6 +33,8 @@ public class Commands {
     public void interact() {
         UI.textPrint("------------");
         UI.textPrint(player.getCurrentRoom().roomInfo(player));
+        UI.mapTabGraphicPrint(String.valueOf(player.getHP()));
+
         UI.textPrint("What would you like to do?");
         String[] input = input();
         ConsoleUtilities.clearConsole();
